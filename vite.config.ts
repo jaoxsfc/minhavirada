@@ -3,7 +3,9 @@ import react from "@vitejs/plugin-react";
 import tailwind from "@tailwindcss/vite";
 import { VitePWA } from "vite-plugin-pwa";
 export default defineConfig({
-  base: process.env.BASE_PATH || "/",
+  // Repository Pages URL: https://jaoxsfc.github.io/minhavirada/.
+  // Root-only regression tests explicitly set BASE_PATH=/.
+  base: process.env.BASE_PATH || "/minhavirada/",
   plugins: [
     react(),
     tailwind(),

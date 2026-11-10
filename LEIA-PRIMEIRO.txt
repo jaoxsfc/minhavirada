@@ -1,0 +1,52 @@
+# Correção de publicação — minhavirada
+
+## Causa comprovada em 10/11/2026
+
+Requisição HTTP direta a `https://jaoxsfc.github.io/minhavirada/` retornou 200 com o mesmo HTML de desenvolvimento da raiz do repositório:
+
+```html
+<script type="module" src="/src/main.tsx"></script>
+```
+
+Esse caminho resolve para `https://jaoxsfc.github.io/src/main.tsx`, que retornou 404. O navegador recebe o container vazio e não executa a aplicação. Não é falha de Dexie, cálculo financeiro ou React Router.
+
+A API pública do repositório confirmou que `.github/workflows` estava ausente. O único workflow remoto era `dynamic/pages/pages-build-deployment`, com execução “pages build and deployment”, evento `dynamic`, concluída com sucesso: <https://github.com/jaoxsfc/minhavirada/actions/runs/42873806820>. “Success” desse pipeline não significa que houve compilação Vite: ele publicou o HTML-fonte. `.gitignore` também não havia sido enviado. Os demais fontes aparecem na árvore remota.
+
+A opção de interface Settings → Pages → Source não pôde ser lida com autenticação: o helper de inspeção do Chrome está indisponível, e a API Pages não autenticada retornou 404. O workflow dinâmico e o HTML publicado são evidência do fluxo incorreto; a opção exata do dropdown deve ser conferida manualmente. Não foi feita alteração remota nem publicação nesta sessão.
+
+## Correção preparada
+
+- `vite.config.ts`: base padrão `/minhavirada/`, inclusive no build de produção. `BASE_PATH=/` continua disponível para a regressão isolada em raiz.
+- `.github/workflows/pages.yml`: valida, testa e compila; o build final usa `/minhavirada/`; recusa HTML-fonte; configura Pages com action oficial, envia **somente `dist`**, publica com `deploy-pages` e verifica o URL retornado com navegador real isolado. Publicação continua manual (`workflow_dispatch`, `publish=true`, branch main).
+- `scripts/check-pages-build.ts`: exige módulos `.js` em `/minhavirada/assets/`, existência dos recursos do HTML, manifest e worker no build; rejeita `/src`, `.ts`, `.tsx` e base incorreta.
+- `scripts/verify-pages.ts`: acessa o HTML efetivamente servido, testa scripts HTTP/tipo, renderização, 404s, ícones, manifesto, escopo do worker e reload de rota hash. Falha com exit code 1 se o site ainda estiver quebrado. Não preenche registros, não lê perfil pessoal nem remove caches de outros navegadores.
+- `package.json`: comandos `check:pages` e `verify:pages`; nenhuma dependência nova. `tsconfig.json` inclui os scripts tipados.
+- `src/tests/pages-deploy.test.ts`: seis casos, incluindo o HTML-fonte observado publicamente. `e2e/pages.spec.ts` agora testa exatamente `/minhavirada/`.
+- `eslint.config.js`/`.gitignore`: ignoram os pacotes de envio extraídos dentro do workspace e fixam a raiz do parser. Cópias extraídas de `lote-2/tsconfig.json` estavam interferindo no lint; nenhum arquivo extraído pelo usuário foi apagado.
+
+`index.html` na raiz continua sendo entrada de desenvolvimento do Vite, corretamente com `/src/main.tsx`. Ele não deve ser trocado manualmente por um bundle com hash nem servido diretamente no Pages. É o `dist/index.html` que precisa ser publicado. O lockfile, serviços financeiros, schema v4, migrations, backups e funcionalidades não foram alterados.
+
+## Enviar as correções pelo site
+
+1. Extrair `minha-virada-correcao-pages.zip` e abrir a pasta `correcao-pages`.
+2. Na raiz de <https://github.com/jaoxsfc/minhavirada>, Add file → Upload files. Arrastar os conteúdos necessários de `scripts`, `src`, `e2e` e os arquivos `vite.config.ts`, `package.json`, `tsconfig.json`, `eslint.config.js`. Confirmar substituição via Commit changes em `main`. Não enviar a pasta externa `correcao-pages`, ZIP, `dist`, `node_modules` ou `LEIA-PRIMEIRO.txt`.
+3. Para evitar omitir a pasta pontuada novamente: Add file → Create new file. Nome completo **`.github/workflows/pages.yml`**. Copiar o conteúdo integral do arquivo local do mesmo nome e confirmar em `main`. Não criar dentro de `src`, `docs`, `lote-1`, `lote-2` ou `correcao-pages`. Criar `.gitignore` na raiz do mesmo modo, usando o arquivo incluído no pacote.
+4. Abrir <https://github.com/jaoxsfc/minhavirada/settings/pages>. Em Build and deployment → Source, selecionar **GitHub Actions**. Não usar Deploy from a branch/main/root nem selecionar `docs`.
+5. Em Actions → **Validar e publicar** → Run workflow, selecionar `main` e marcar **Publicar a versão validada no GitHub Pages** (`publish=true`). O workflow automático “pages build and deployment” não é o workflow corrigido.
+6. Esperar validação, deploy e a etapa **Verificar o endereço realmente publicado**. Se falhar, ler a primeira etapa com erro; não tratar um build verde isolado como solução.
+7. Reabrir <https://jaoxsfc.github.io/minhavirada/> em janela anônima/novo contexto para diagnóstico inicial. Não limpar IndexedDB ou dados pessoais. Conferir que Network carrega `/minhavirada/assets/index-*.js` com 200 e que a aplicação aparece.
+
+## Verificação
+
+Comandos locais: `npm run lint`, `npm run typecheck`, `npm test` (208 testes), `npm run build`, `npm run check:pages`; preview do build de produção e `npm run verify:pages -- http://127.0.0.1:4339/minhavirada/` aprovados. O verificador confirmou renderização, zero 404s iniciais, manifest, worker com scope `/minhavirada/` e reload de Hábitos por hash.
+
+A primeira verificação da URL pública falhou corretamente com “HTML de desenvolvimento: referências a fontes não podem ser publicadas”. A aceitação pública **permanece pendente até enviar, configurar e publicar**, depois executar:
+
+```powershell
+$env:PLAYWRIGHT_BROWSERS_PATH="$PWD\.playwright"
+npm.cmd run verify:pages -- https://jaoxsfc.github.io/minhavirada/
+```
+
+No CI, Chromium é instalado automaticamente e a mesma verificação roda após o deploy com até seis tentativas para propagação. Localmente, é necessário ter o navegador Playwright instalado. O ZIP de correção é um pacote de fontes para upload, não um site pronto para ser servido diretamente.
+
+Referências oficiais: [Vite no GitHub Pages](https://vite.dev/guide/static-deploy#github-pages), [workflow oficial de Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).

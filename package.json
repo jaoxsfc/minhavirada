@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "check:pages": "node scripts/check-pages-build.ts",
+    "verify:pages": "node scripts/verify-pages.ts"
   },
   "keywords": [],
   "author": "",

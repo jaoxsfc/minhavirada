@@ -14,7 +14,7 @@ test("artefato Pages em subdiretório mantém rotas, manifest, recursos e offlin
     [
       "node_modules/vite/bin/vite.js",
       "build",
-      "--base=/minha-virada/",
+      "--base=/minhavirada/",
       `--outDir=${output}`,
     ],
     { stdio: "pipe", timeout: 60000 },
@@ -29,13 +29,13 @@ test("artefato Pages em subdiretório mantém rotas, manifest, recursos e offlin
   };
   const server = createServer((req, res) => {
     const url = new URL(req.url ?? "/", "http://local");
-    if (!url.pathname.startsWith("/minha-virada/")) {
+    if (!url.pathname.startsWith("/minhavirada/")) {
       res.writeHead(404);
       res.end();
       return;
     }
     const relative =
-      decodeURIComponent(url.pathname.slice("/minha-virada/".length)) ||
+      decodeURIComponent(url.pathname.slice("/minhavirada/".length)) ||
       "index.html";
     const path = resolve(output, relative);
     if (!path.startsWith(output + sep) || !existsSync(path)) {
@@ -65,12 +65,12 @@ test("artefato Pages em subdiretório mantém rotas, manifest, recursos e offlin
     page.on("response", (r) => {
       if (r.status() >= 400) failures.push(r.url());
     });
-    await page.goto(origin + "/minha-virada/#/mais/boas-vindas");
+    await page.goto(origin + "/minhavirada/#/mais/boas-vindas");
     await expect(
       page.getByRole("heading", { name: "Um espaço para sua virada." }),
     ).toBeVisible();
     const manifest = await (
-      await page.request.get(origin + "/minha-virada/manifest.webmanifest")
+      await page.request.get(origin + "/minhavirada/manifest.webmanifest")
     ).json();
     expect(manifest.start_url).toBe("./");
     expect(manifest.scope).toBe("./");
@@ -79,7 +79,7 @@ test("artefato Pages em subdiretório mantém rotas, manifest, recursos e offlin
       expect(
         (
           await page.request.get(
-            new URL(icon.src, origin + "/minha-virada/").href,
+            new URL(icon.src, origin + "/minhavirada/").href,
           )
         ).ok(),
       ).toBe(true);
@@ -100,8 +100,8 @@ test("artefato Pages em subdiretório mantém rotas, manifest, recursos e offlin
       await page.evaluate(
         async () => (await navigator.serviceWorker.getRegistration())?.scope,
       ),
-    ).toBe(origin + "/minha-virada/");
-    await page.goto(origin + "/minha-virada/#/mais/seguranca");
+    ).toBe(origin + "/minhavirada/");
+    await page.goto(origin + "/minhavirada/#/mais/seguranca");
     await page.reload();
     await expect(
       page.getByRole("heading", { name: "Seus dados e segurança." }),
