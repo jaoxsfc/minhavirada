@@ -1,0 +1,123 @@
+{
+  "format": "minha-virada",
+  "schemaVersion": 3,
+  "createdAt": "2024-01-15T12:00:00.000Z",
+  "data": {
+    "settings": [
+      {
+        "id": "profile",
+        "name": "Perfil de teste",
+        "salary": 250000,
+        "benefit": 120000,
+        "fuel": 35000,
+        "food": 35000,
+        "reserve": 1000000,
+        "theme": "dark",
+        "hideSensitive": true,
+        "updatedAt": "2024-01-15T12:00:00.000Z"
+      }
+    ],
+    "audit": [
+      {
+        "id": 1,
+        "entity": "profile",
+        "action": "created",
+        "at": "2024-01-15T12:00:00.000Z"
+      }
+    ],
+    "checkIns": [
+      {
+        "date": "2024-01-15",
+        "mood": 3,
+        "energy": 4,
+        "consumed": false,
+        "craving": 1,
+        "triggers": "",
+        "exercise": true,
+        "activityMinutes": 20,
+        "projectMinutes": 30,
+        "notes": "",
+        "revision": 1,
+        "createdAt": "2024-01-15T12:00:00.000Z",
+        "updatedAt": "2024-01-15T12:00:00.000Z"
+      }
+    ],
+    "habits": [],
+    "habitLogs": [],
+    "attempts": [],
+    "tasks": [],
+    "taskRecords": [],
+    "routineEvents": [],
+    "financeAccounts": [
+      {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "name": "Banco representativo",
+        "type": "checking",
+        "openingBalance": 100000,
+        "openingDate": "2024-01-01",
+        "status": "active",
+        "color": "#173e34",
+        "revision": 1
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000002",
+        "name": "Benefício representativo",
+        "type": "benefit",
+        "openingBalance": 50000,
+        "openingDate": "2024-01-01",
+        "status": "active",
+        "color": "#173e34",
+        "revision": 1
+      }
+    ],
+    "financeCategories": [
+      {
+        "id": "00000000-0000-4000-8000-000000000003",
+        "name": "Receita representativa",
+        "kind": "income",
+        "benefitEligible": false,
+        "status": "active"
+      }
+    ],
+    "financeEntries": [
+      {
+        "id": "00000000-0000-4000-8000-000000000004",
+        "kind": "income",
+        "accountId": "00000000-0000-4000-8000-000000000001",
+        "categoryId": "00000000-0000-4000-8000-000000000003",
+        "description": "Serviço representativo",
+        "amount": 30000,
+        "competence": "2024-01-15",
+        "dueDate": "2024-01-15",
+        "status": "pending",
+        "revision": 1
+      }
+    ],
+    "financeRules": [],
+    "financeOccurrences": [],
+    "financeCards": [],
+    "financePurchases": [],
+    "financeInstallments": [],
+    "financeInvoices": [],
+    "financePayments": [
+      {
+        "id": "00000000-0000-4000-8000-000000000005",
+        "targetType": "entry",
+        "targetId": "00000000-0000-4000-8000-000000000004",
+        "accountId": "00000000-0000-4000-8000-000000000001",
+        "amount": 20000,
+        "date": "2024-01-15",
+        "status": "active"
+      }
+    ],
+    "financeTransfers": [],
+    "benefitLedger": [],
+    "financeCredits": [],
+    "financeBudgets": [],
+    "financeSettings": [],
+    "financeOperations": [],
+    "financeChanges": [],
+    "backupState": []
+  },
+  "checksum": "569db44d4e546dbcea2f17aaf834330b67c93e5e1c63a956ed255ad537d9c97d"
+}

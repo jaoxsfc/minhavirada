@@ -1,0 +1,213 @@
+{
+  "format": "minha-virada",
+  "schemaVersion": 4,
+  "createdAt": "2024-01-15T12:00:00.000Z",
+  "data": {
+    "settings": [
+      {
+        "id": "profile",
+        "name": "Perfil de teste",
+        "salary": 250000,
+        "benefit": 120000,
+        "fuel": 35000,
+        "food": 35000,
+        "reserve": 1000000,
+        "theme": "dark",
+        "hideSensitive": true,
+        "updatedAt": "2024-01-15T12:00:00.000Z"
+      }
+    ],
+    "audit": [
+      {
+        "id": 1,
+        "entity": "profile",
+        "action": "created",
+        "at": "2024-01-15T12:00:00.000Z"
+      }
+    ],
+    "checkIns": [
+      {
+        "date": "2024-01-15",
+        "mood": 3,
+        "energy": 4,
+        "consumed": false,
+        "craving": 1,
+        "triggers": "",
+        "exercise": true,
+        "activityMinutes": 20,
+        "projectMinutes": 30,
+        "notes": "",
+        "revision": 1,
+        "createdAt": "2024-01-15T12:00:00.000Z",
+        "updatedAt": "2024-01-15T12:00:00.000Z"
+      }
+    ],
+    "habits": [],
+    "habitLogs": [],
+    "attempts": [],
+    "tasks": [],
+    "taskRecords": [],
+    "routineEvents": [],
+    "financeAccounts": [
+      {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "name": "Banco representativo",
+        "type": "checking",
+        "openingBalance": 100000,
+        "openingDate": "2024-01-01",
+        "status": "active",
+        "color": "#173e34",
+        "revision": 1
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000002",
+        "name": "Benefício representativo",
+        "type": "benefit",
+        "openingBalance": 50000,
+        "openingDate": "2024-01-01",
+        "status": "active",
+        "color": "#173e34",
+        "revision": 1
+      }
+    ],
+    "financeCategories": [
+      {
+        "id": "00000000-0000-4000-8000-000000000003",
+        "name": "Receita representativa",
+        "kind": "income",
+        "benefitEligible": false,
+        "status": "active"
+      }
+    ],
+    "financeEntries": [
+      {
+        "id": "00000000-0000-4000-8000-000000000004",
+        "kind": "income",
+        "accountId": "00000000-0000-4000-8000-000000000001",
+        "categoryId": "00000000-0000-4000-8000-000000000003",
+        "description": "Serviço representativo",
+        "amount": 30000,
+        "competence": "2024-01-15",
+        "dueDate": "2024-01-15",
+        "status": "pending",
+        "revision": 1
+      }
+    ],
+    "financeRules": [],
+    "financeOccurrences": [],
+    "financeCards": [],
+    "financePurchases": [],
+    "financeInstallments": [],
+    "financeInvoices": [],
+    "financePayments": [
+      {
+        "id": "00000000-0000-4000-8000-000000000005",
+        "targetType": "entry",
+        "targetId": "00000000-0000-4000-8000-000000000004",
+        "accountId": "00000000-0000-4000-8000-000000000001",
+        "amount": 20000,
+        "date": "2024-01-15",
+        "status": "active"
+      }
+    ],
+    "financeTransfers": [],
+    "benefitLedger": [],
+    "financeCredits": [],
+    "financeBudgets": [],
+    "financeSettings": [],
+    "financeOperations": [],
+    "financeChanges": [],
+    "backupState": [],
+    "goals": [
+      {
+        "id": "00000000-0000-4000-8000-000000000006",
+        "title": "Reserva representativa",
+        "description": "",
+        "category": "Reserva",
+        "type": "financial",
+        "target": 100000,
+        "accountId": "00000000-0000-4000-8000-000000000001",
+        "startDate": "2024-01-01",
+        "deadline": "",
+        "priority": "high",
+        "status": "active",
+        "notes": "",
+        "revision": 1,
+        "createdAt": "2024-01-15T12:00:00.000Z",
+        "updatedAt": "2024-01-15T12:00:00.000Z"
+      }
+    ],
+    "goalMilestones": [
+      {
+        "id": "00000000-0000-4000-8000-000000000008",
+        "goalId": "00000000-0000-4000-8000-000000000006",
+        "title": "Primeiro marco",
+        "deadline": "",
+        "budget": null,
+        "completed": false,
+        "notes": "",
+        "revision": 1,
+        "createdAt": "2024-01-15T12:00:00.000Z",
+        "updatedAt": "2024-01-15T12:00:00.000Z"
+      }
+    ],
+    "goalMovements": [
+      {
+        "id": "00000000-0000-4000-8000-000000000007",
+        "goalId": "00000000-0000-4000-8000-000000000006",
+        "accountId": "00000000-0000-4000-8000-000000000001",
+        "kind": "allocate",
+        "amount": 10000,
+        "date": "2024-01-15",
+        "notes": "",
+        "createdAt": "2024-01-15T12:00:00.000Z"
+      }
+    ],
+    "projects": [
+      {
+        "id": "00000000-0000-4000-8000-000000000009",
+        "client": "Origem de teste",
+        "service": "Serviço representativo",
+        "category": "Serviço",
+        "description": "",
+        "estimated": 50000,
+        "contracted": 30000,
+        "forecastCosts": null,
+        "stage": "executing",
+        "deadline": "",
+        "nextAction": "",
+        "notes": "",
+        "costsComplete": false,
+        "hoursComplete": false,
+        "archived": false,
+        "revision": 1,
+        "createdAt": "2024-01-15T12:00:00.000Z",
+        "updatedAt": "2024-01-15T12:00:00.000Z"
+      }
+    ],
+    "projectReceipts": [
+      {
+        "id": "00000000-0000-4000-8000-00000000000a",
+        "projectId": "00000000-0000-4000-8000-000000000009",
+        "kind": "income",
+        "paymentId": "00000000-0000-4000-8000-000000000005",
+        "entryId": "00000000-0000-4000-8000-000000000004",
+        "createdAt": "2024-01-15T12:00:00.000Z"
+      }
+    ],
+    "projectTimeEntries": [
+      {
+        "id": "00000000-0000-4000-8000-00000000000b",
+        "projectId": "00000000-0000-4000-8000-000000000009",
+        "date": "2024-01-15",
+        "minutes": 60,
+        "notes": "",
+        "revision": 1,
+        "createdAt": "2024-01-15T12:00:00.000Z",
+        "updatedAt": "2024-01-15T12:00:00.000Z"
+      }
+    ],
+    "futureTaskLinks": []
+  },
+  "checksum": "d703f2edac14ee7dfe8e652d317ed59ce331a29456e8d0c48dfa6cf00bac5ab6"
+}
